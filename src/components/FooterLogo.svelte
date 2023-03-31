@@ -1,6 +1,6 @@
 <script lang="ts"></script>
-<style lang="scss">
 
+<style lang="scss">
 $base-gray: gray;
 
 .logo {
@@ -21,10 +21,7 @@ $base-gray: gray;
     opacity: .6;
   }
 }
-
-
 </style>
-
 
 <div class="logo">
   <p class="logo__name">KoalaSoftwares</p>

@@ -1,9 +1,10 @@
 <script lang="ts">
 
-export let buttonTitle: string
-export let buttonIcon: string
+  export let buttonTitle: string;
+  export let buttonIcon: string;
 
 </script>
+
 <style lang="scss">
 $base-color: #719D33;
 
@@ -32,12 +33,9 @@ $base-color: #719D33;
     margin-right  : .5rem;
   }
 }
-
-
-
 </style>
 
-<button class="button">
+<button type="submit" class="button">
   <span class="button__title">{ buttonTitle }</span>
   <i class="{buttonIcon} button__icon"></i>
 </button>

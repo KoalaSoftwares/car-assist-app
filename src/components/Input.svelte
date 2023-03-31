@@ -1,13 +1,12 @@
 <script lang="ts">
 
-export let labelName: string;
-export let placeholderText: string;
-
+  export let labelName: string;
+  export let placeholderText: string;
+  export let required: boolean;
 
 </script>
 
 <style lang="scss">
-
 $base-gray: gray;
 
 .label {
@@ -15,7 +14,6 @@ $base-gray: gray;
 }
 
 .input {
-  
   width: 100%;
   height: 2.8rem;
   padding: .5rem;
@@ -23,8 +21,7 @@ $base-gray: gray;
   border-radius: .8rem;
   border: 1px solid $base-gray;
 }
-
 </style>
 
 <label class="label" for="name">{ labelName }</label>
-<input class="input" id="name" placeholder="{placeholderText}" type="text">
+<input class="input" required="{required}" id="name" placeholder="{placeholderText}" type="text" name="input">
