@@ -68,5 +68,7 @@
       </form>
     </main>
 
-    <FooterLogo />
+    <footer>
+      <FooterLogo />
+    </footer>
 </section>

@@ -4,7 +4,6 @@
   export let buttonIcon: string;
 
 </script>
-
 <style lang="scss">
 $base-color: #719D33;
 
