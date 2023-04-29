@@ -15,6 +15,7 @@
 
   function selectService() {
     console.log("Click");
+    goToPage("schedule");
   }
 </script>
 
@@ -26,7 +27,7 @@
     extraButton={true}
     buttonType="service"
     buttonIcon="bi-calendar2-check-fill"
-    on:buttonClick={() => goToPage('schedule/user-schedules')}
+    on:buttonClick={() => goToPage('user-schedules')}
   />
 
 
