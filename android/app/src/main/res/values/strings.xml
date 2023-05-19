@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Car Assist</string>
+    <string name="title_activity_main">Car Assist</string>
+    <string name="package_name">com.carassist.app</string>
+    <string name="custom_url_scheme">com.carassist.app</string>
+</resources>
