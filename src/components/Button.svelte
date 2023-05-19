@@ -1,9 +1,16 @@
 <script lang="ts">
+	import { createEventDispatcher } from "svelte";
+
+  const dispatch = createEventDispatcher();
+
+  function handleClick() {
+		dispatch('buttonClick');
+	}
 	export let buttonTitle: string;
 	export let buttonIcon: string;
 </script>
 
-<button type="submit" class="button">
+<button on:click={handleClick} type="submit" class="button">
 	<span class="button__title">{buttonTitle}</span>
 	<i class="{buttonIcon} button__icon" />
 </button>

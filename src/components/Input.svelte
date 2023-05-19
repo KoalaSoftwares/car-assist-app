@@ -2,10 +2,11 @@
 	export let labelName: string;
 	export let placeholderText: string;
 	export let required: boolean;
+  export let inputName: string;
 </script>
 
 <label class="label" for="name">{labelName}</label>
-<input class="input" {required} id="name" placeholder={placeholderText} type="text" name="input" />
+<input class="input" {required} id="name" placeholder={placeholderText} type="text" name={inputName} />
 
 <style lang="scss">
 	$base-gray: gray;
