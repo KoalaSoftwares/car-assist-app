@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { createEventDispatcher } from 'svelte';
-	import { page } from '$app/stores';
 
 	export let icon: string;
 	export let headerTitle: string;

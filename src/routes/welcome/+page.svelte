@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { goto } from "$app/navigation";
-	import { onMount, tick } from "svelte";
+	import { onMount } from "svelte";
 	import Button from "../../components/Button.svelte";
   import FooterLogo from "../../components/FooterLogo.svelte";
 	import Input from "../../components/Input.svelte";
@@ -63,7 +63,7 @@
       <h5 class="main__title">Para iniciar digite seu nome.</h5>
 
       <form class="form">
-        <Input required={true} labelName="Nome" placeholderText="Digite seu nome" />
+        <Input required={true} labelName="Nome" placeholderText="Digite seu nome" inputName="Nome" />
         <Button buttonTitle="Acessar aplicativo" buttonIcon="bi-arrow-right" />
       </form>
     </main>
