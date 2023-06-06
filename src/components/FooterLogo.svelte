@@ -2,7 +2,7 @@
 
 <div class="logo">
 	<p class="logo__name">KoalaSoftwares</p>
-	<img class="logo__icon" src="images/KoalaSoftwaresLogo.png" alt="Koala Softwares logo" />
+	<img class="logo__icon" src="../images/KoalaSoftwaresLogo.png" alt="Koala Softwares logo" />
 </div>
 
 <style lang="scss">

@@ -14,7 +14,6 @@
 	}
 
   function selectService() {
-    console.log("Click");
     goToPage("schedule");
   }
 </script>
@@ -27,15 +26,15 @@
     extraButton={true}
     buttonType="service"
     buttonIcon="bi-calendar2-check-fill"
-    on:buttonClick={() => goToPage('user-schedules')}
+    on:buttonClick={() => goToPage('services/user-schedules')}
   />
 
 
   <main class="content__cards">
     <h3>Serviços disponíveis</h3>
-    <ServiceCard serviceName="Lavagem Prata" servicePrice="R$ 50,00" on:cardClick={() => selectService()} />
-    <ServiceCard serviceName="Lavagem Prata" servicePrice="R$ 50,00" />
-    <ServiceCard serviceName="Lavagem Prata" servicePrice="R$ 50,00" />
+    <ServiceCard userSchedulesCard={false} serviceName="Lavagem Prata" servicePrice="R$ 50,00" on:cardClick={() => selectService()} />
+    <ServiceCard userSchedulesCard={false} serviceName="Lavagem Prata" servicePrice="R$ 50,00" />
+    <ServiceCard userSchedulesCard={false} serviceName="Lavagem Prata" servicePrice="R$ 50,00" />
   </main>
 
 
