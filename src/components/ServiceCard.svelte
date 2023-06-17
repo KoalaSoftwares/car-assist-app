@@ -2,7 +2,8 @@
 	import { createEventDispatcher } from 'svelte';
 	export let serviceName: string;
 	export let servicePrice: string;
-  export let userSchedulesCard: boolean
+  export let userSchedulesCard: boolean;
+  export let serviceDate: string = '';
 
 	const dispatch = createEventDispatcher();
 
@@ -11,7 +12,7 @@
   }
 </script>
 
-{#if userSchedulesCard = false}
+{#if userSchedulesCard == false}
 <div on:click={handleClick} on:keypress={handleClick} class="card">
 	<h6 class="card__title__label">Serviço</h6>
 	<p class="card__title">{serviceName}</p>
@@ -25,7 +26,7 @@
     <h6 class="user__card__wrapper__title__label">Serviço</h6>
     <p class="user__card__wrapper__title">{serviceName}</p>
     <h6 class="user__card__wrapper__label__price">Data</h6>
-    <p class="user__card__wrapper__price">{"17/05/2023 14:00"}</p>
+    <p class="user__card__wrapper__price">{serviceDate}</p>
   </div>
   <p class="user__card__status">FINALIZADO</p>
 </div>

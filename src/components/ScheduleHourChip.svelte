@@ -4,26 +4,9 @@
 	export let selectedHour: number;
   export let required: boolean;
   export let inputName: string;
+  export let availableHours: Array<any>;
 
 	let rates: any;
-	const availableHours: Array<Object> = [
-		{
-			id: 0,
-			hour: '10:00'
-		},
-		{
-			id: 1,
-			hour: '12:00'
-		},
-		{
-			id: 2,
-			hour: '13:30'
-		},
-		{
-			id: 3,
-			hour: '15:00'
-		}
-	];
 
 	onMount(() => {
 		rates = document.getElementsByName(inputName);
