@@ -15,9 +15,9 @@ export default class Request {
     return fetchData;
   }
 
-  public async putRequest(url: string, body: object, headerContentType: string) {
+  public async putRequest(endpoint: string, body: object, headerContentType: string) {
 
-    const fetchResult = await fetch(url, { method: 'PUT', body: JSON.stringify(body), headers: { 'content-type': headerContentType } })
+    const fetchResult = await fetch(`${this.serverUrl}${endpoint}`, { method: 'PUT', body: JSON.stringify(body), headers: { 'content-type': headerContentType } })
     const fetchData = await fetchResult.json();
     return fetchData;
   }
@@ -28,11 +28,11 @@ export default class Request {
     const fetchData = await fetchResult.json();
     return fetchData;
   }
-  public async deleteRequest(url: string, body: object) {
+  public async deleteRequest(endpoint: string, body: object) {
 
-    const fetchResult = await fetch(url, { method: 'DELETE', body: JSON.stringify(body) })
+    const fetchResult = await fetch(`${this.serverUrl}${endpoint}`, { method: 'DELETE', body: JSON.stringify(body) })
     const fetchData = await fetchResult.json();
-    return fetchData;
+    return true;
   }
 
 }

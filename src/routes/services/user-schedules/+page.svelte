@@ -17,16 +17,21 @@
 	}
 
 	async function fetchApiData() {
-    let endpoint = 'users';
+    let endpoint = 'car-schedule-api/schedule';
 		let userSchedules = [];
+    let fetchResult;
+    let splitDate;
+    let formattedDate;
 		let fetchUserSchedules = await requestService.getRequest(endpoint);
 
-		for (const hour in fetchUserSchedules) {
-			if (Object.prototype.hasOwnProperty.call(fetchUserSchedules, hour)) {
-				const element = fetchUserSchedules[hour];
-				let fetchResult = {
-					serviceName: element.name,
-					serviceDate: element.id,
+		for (const service in fetchUserSchedules) {
+			if (Object.prototype.hasOwnProperty.call(fetchUserSchedules, service)) {
+				const element = fetchUserSchedules[service];
+        splitDate = element.date.split("T");
+        formattedDate =  `${splitDate[0]} ${splitDate[1].split(".")[0]}`;
+				fetchResult = {
+					serviceName: element.serviceType,
+					serviceDate: formattedDate,
 					serviceStatus: element.username
 				};
 				userSchedules.push(fetchResult);

@@ -20,11 +20,12 @@
 	});
 
 	async function scheduleService() {
-		let endpoint = 'schedule';
+		let endpoint = 'car-schedule-api/schedule';
     let headerContentType = 'application/json; charset=UTF-8';
+    let arrayDate = scheduleInfo.date.split(/(\s+)/);
+    let formattedDate = `${arrayDate[0]}T${arrayDate[2]}:00Z`
+    scheduleInfo.date = formattedDate;
     let postServiceSchedule = await requestService.postRequest(endpoint, scheduleInfo, headerContentType);
-    console.log(postServiceSchedule);
-
     goToPage('services/user-schedules');
 	}
 

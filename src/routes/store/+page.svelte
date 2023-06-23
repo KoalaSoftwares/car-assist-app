@@ -2,20 +2,37 @@
 	import Header from '../../components/Header.svelte';
 	import { goto } from '$app/navigation';
 	import ProductCard from '../../components/ProductCard.svelte';
+  import Request from '../../utility/Request';
 
 	const pageTitle: string = 'Produtos';
+  const requestService = new Request();
 
 	function goBack(): any {
 		history.back();
+	}
+
+  async function fetchApiData() {
+    let endpoint = 'photos';
+		let availableServices = [];
+		let fetchServices = await requestService.getRequest(endpoint);
+
+		for (const service in fetchServices) {
+			if (Object.prototype.hasOwnProperty.call(fetchServices, service)) {
+				const element = fetchServices[service];
+				let fetchResult = {productId: element.id, imgUrl: element.url, productPrice: element.albumId, productName: element.title, productDescription: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae dolore laudantium, ratione recusandae dolorum porro eaque voluptatum accusantium suscipit ipsam numquam, sint nulla inventore aliquid cum? Maiores non natus quis!'};
+				availableServices.push(fetchResult);
+			}
+		}
+		return availableServices;
 	}
 
 	function goToPage(routerPage: string): any {
 		goto(`/${routerPage}`);
 	}
 
-	function openProductPage() {
-		console.log('Click');
-		goToPage('schedule');
+	function openProductPage(product: object) {
+    localStorage.setItem('SELECTED_PRODUCT', JSON.stringify(product));
+		goToPage('store/product-details');
 	}
 
 	function addProductToCart() {
@@ -41,14 +58,13 @@
 	/>
 
 	<main class="content__wrapper">
-		<ProductCard on:productClick={() => goToPage('store/product-details')} />
-		<ProductCard />
-		<ProductCard />
-		<ProductCard />
-		<ProductCard />
-		<ProductCard />
-		<ProductCard />
-		<ProductCard />
+
+    {#await fetchApiData() then products}
+      {#each products as product }
+      <ProductCard productImage={product.imgUrl} productName={product.productName} productPrice={product.productPrice} on:productClick={() => openProductPage(product)} />
+      {/each}
+    {/await}
+
 	</main>
 </section>
 

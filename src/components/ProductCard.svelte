@@ -1,9 +1,9 @@
 <script lang="ts">
   import { createEventDispatcher } from 'svelte';
 
-	const productImage: string = 'https://images.unsplash.com/photo-1618005198919-d3d4b5a92ead?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80';
-	const productPrice: string = 'R$100,00';
-	const productName: string = 'ProdutoX 500ml 1 unidade';
+	export let productImage: string = '';
+	export let productPrice: string = '';
+	export let productName: string = '';
 
   const dispatch = createEventDispatcher();
 
@@ -30,6 +30,12 @@
 		width: 42vw;
 		box-shadow: 0.4rem 0.6rem 0.8rem rgba(black, 0.2);
 		border-radius: 12px;
+
+    &__image {
+      min-height: 17vh;
+      max-height: 17vh;
+      max-width: auto;
+    }
 
 		&__info {
 			padding: 0.4rem;
