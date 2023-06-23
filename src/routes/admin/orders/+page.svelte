@@ -1,14 +1,10 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
-	import { onMount } from 'svelte';
-	import FooterLogo from '../../../components/FooterLogo.svelte';
 	import Header from '../../../components/Header.svelte';
 	import ServiceCard from '../../../components/ServiceCard.svelte';
 	import Request from '../../../utility/Request.js';
-	import { json } from '@sveltejs/kit';
-	import Button from '../../../components/Button.svelte';
 
-	const pageTitle: string = 'Serviços';
+	const pageTitle: string = 'Pedidos';
 	const requestService = new Request();
 
 	function goBack(): any {
@@ -16,14 +12,14 @@
 	}
 
 	async function fetchApiData() {
-    let endpoint = 'car-store-api/product';
+    let endpoint = 'car-store-api/order';
 		let availableServices = [];
 		let fetchServices = await requestService.getRequest(endpoint);
 
 		for (const service in fetchServices) {
 			if (Object.prototype.hasOwnProperty.call(fetchServices, service)) {
 				const element = fetchServices[service];
-				let fetchResult = {productId: element.id, productName: element.name, productPrice: element.price, productDescription: element.description, imgUrl: element.imgUrl};
+				let fetchResult = {orderId: element.id, userName: element.userName, totalPrice: element.totalPrice, paymentType: element.paymentType, date: element.date, products: element.products};
 				availableServices.push(fetchResult);
 			}
 		}
@@ -35,8 +31,8 @@
 	}
 
 	function selectService(service: object) {
-    localStorage.setItem('SELECTED_PRODUCT', JSON.stringify(service));
-		goToPage('admin/products/modify-product');
+    localStorage.setItem('SELECTED_ORDER', JSON.stringify(service));
+		goToPage('admin/orders/modify-order');
 	}
 </script>
 
@@ -49,21 +45,21 @@
 	/>
 
 	<main class="content__cards">
-		<h3>Serviços disponíveis</h3>
+		<h3>Agendamentos realizados</h3>
 		{#await fetchApiData() then services}
 			{#each services as service}
 				<ServiceCard
 					userSchedulesCard={false}
-					serviceName={service.productName}
-					servicePrice={`R$ ${service.productPrice}`}
+					serviceName={service.userName}
+					servicePrice={`R$ ${service.totalPrice}`}
 					on:cardClick={() => selectService(service)}
 				/>
 			{/each}
 		{/await}
 
-    <div class="content__cards__button">
-      <Button buttonTitle="Criar Produto" buttonIcon="bi-arrow-right" on:buttonClick={() => goToPage('admin/products/create-product')} />
-    </div>
+    <!-- <div class="content__cards__button">
+      <Button buttonTitle="Criar serviço" buttonIcon="bi-arrow-right" on:buttonClick={() => goToPage('admin/services/create-service')} />
+    </div> -->
 	</main>
 </section>
 

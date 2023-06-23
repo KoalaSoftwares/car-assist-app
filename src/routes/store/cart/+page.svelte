@@ -5,13 +5,22 @@
 	import ProductCartCard from '../../../components/ProductCartCard.svelte';
   import type { Product } from '../../../utility/Interfaces';
 	import { onMount } from 'svelte';
+  import Request from '../../../utility/Request.js';
 
 	const pageTitle: string = 'Carrinho';
+  const requestService = new Request();
   let userCart: Array<Product> = [];
+  let userName: string;
+  let productsTotal: any = 0;
 
     onMount(() => {
       userCart = JSON.parse(localStorage.getItem('USER_CART') || '[]');
+      userName = JSON.parse(localStorage.getItem('USER_NAME') || "");
       console.log(userCart);
+      userCart.forEach(element => {
+      console.log(element.price)
+      productsTotal = productsTotal + element.price;
+    });
     })
 
 	function goBack(): any {
@@ -22,11 +31,6 @@
 		goto(`/${routerPage}`);
 	}
 
-	function openProductPage() {
-		console.log('Click');
-		goToPage('schedule');
-	}
-
 	function addProductToCart() {
 		console.log('Click');
 		goToPage('schedule');
@@ -35,6 +39,21 @@
 	function removeProductToCart() {
 		console.log('Click');
 		goToPage('schedule');
+	}
+
+  async function createOrder() {
+		let endpoint = `car-store-api/order`;
+		let headerContentType = 'application/json; charset=UTF-8';
+		let body = {
+			userName: userName,
+			totalPrice: productsTotal,
+			date: new Date(`2023-06-23T01:55:00.000Z`),
+			products: userCart,
+			paymentType: "Local"
+		};
+		await requestService.postRequest(endpoint, body, headerContentType);
+    localStorage.removeItem('USER_CART');
+		goToPage('functions');
 	}
 </script>
 
@@ -50,7 +69,7 @@
     <div>
       <h4 class="content__main__title">Seus produtos</h4>
       {#each userCart as product}
-      <ProductCartCard productImage={product.productImage} productName={product.productName} productPrice={product.productPrice} />
+      <ProductCartCard productImage={product.imgUrl} productName={product.name} productPrice={product.price} />
       {/each}
     </div>
 
@@ -59,7 +78,7 @@
       <div class="content__main__info__wrapper">
         <div class="content__main__info">
           <p>Cliente</p>
-          <p>{'Nome'}</p>
+          <p>{userName}</p>
         </div>
         <div class="content__main__info">
           <p>Forma de Pagamento</p>
@@ -67,11 +86,11 @@
         </div>
         <div class="content__main__info">
           <p>Valor a pagar</p>
-          <p>{'Placeholder'}</p>
+          <p>{`R$ ${productsTotal}`}</p>
         </div>
         <div class="content__main__info">
           <p>Entrega</p>
-          <p>{'Placeholder'}</p>
+          <p>{'Retirada no local'}</p>
         </div>
       </div>
     </div>
@@ -82,7 +101,7 @@
     </div>
     
 		<div class="content__main__button">
-			<Button buttonIcon="bi bi-arrow-right" buttonTitle="Finalizar Agendamento" />
+			<Button buttonIcon="bi bi-arrow-right" buttonTitle="Finalizar Compra" on:buttonClick={() => {createOrder()}} />
 		</div>
 	</main>
 </section>
@@ -127,7 +146,7 @@
 			}
 
 			&__button {
-				// padding-top: 18vh;
+				padding-top: 24.5vh;
 			}
 		}
 	}
