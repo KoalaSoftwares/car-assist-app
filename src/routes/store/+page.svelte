@@ -12,14 +12,14 @@
 	}
 
   async function fetchApiData() {
-    let endpoint = 'photos';
+    let endpoint = 'car-store-api/product';
 		let availableServices = [];
 		let fetchServices = await requestService.getRequest(endpoint);
 
 		for (const service in fetchServices) {
 			if (Object.prototype.hasOwnProperty.call(fetchServices, service)) {
 				const element = fetchServices[service];
-				let fetchResult = {productId: element.id, imgUrl: element.url, productPrice: element.albumId, productName: element.title, productDescription: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae dolore laudantium, ratione recusandae dolorum porro eaque voluptatum accusantium suscipit ipsam numquam, sint nulla inventore aliquid cum? Maiores non natus quis!'};
+				let fetchResult = {productId: element.id, imgUrl: element.imgUrl, productPrice: element.price, productName: element.name, productDescription: element.description};
 				availableServices.push(fetchResult);
 			}
 		}

@@ -9,21 +9,21 @@
 	const pageTitle: string = 'Detalhes do Produto';
 	let userCart: Array<Object>;
 	let selectedProduct: Product = {
-    productId: '',
-		productImage: '',
-		productName: '',
-		productPrice: '',
-		productDescription: ''
+    id: '',
+		imgUrl: '',
+		name: '',
+		price: '',
+		description: ''
 	};
 
 	onMount(() => {
 		userCart = JSON.parse(localStorage.getItem('USER_CART') || '[]');
 		let productDetails = JSON.parse(localStorage.getItem('SELECTED_PRODUCT') || '{}');
-		selectedProduct.productId = productDetails.productId;
-		selectedProduct.productImage = productDetails.imgUrl;
-		selectedProduct.productName = productDetails.productName;
-		selectedProduct.productPrice = productDetails.productPrice;
-		selectedProduct.productDescription = productDetails.productDescription;
+		selectedProduct.id = productDetails.productId;
+		selectedProduct.imgUrl = productDetails.imgUrl;
+		selectedProduct.name = productDetails.productName;
+		selectedProduct.price = productDetails.productPrice;
+		selectedProduct.productDescdescriptionription = productDetails.productDescription;
 	});
 
   onDestroy(() => {
@@ -58,14 +58,14 @@
 	/>
 
 	<main class="content__main">
-		<img class="content__main__image" src={selectedProduct.productImage} alt="Product" />
+		<img class="content__main__image" src={selectedProduct.imgUrl} alt="Product" />
 		<div>
-			<h2 class="content__main__product">{selectedProduct.productName}</h2>
-			<p class="content__main__price">{`R$ ${selectedProduct.productPrice}`}</p>
+			<h2 class="content__main__product">{selectedProduct.name}</h2>
+			<p class="content__main__price">{`R$ ${selectedProduct.price}`}</p>
 		</div>
 		<div>
 			<h4 class="content__main__title">Sobre o produto</h4>
-			<p class="content__main__about">{selectedProduct.productDescription}</p>
+			<p class="content__main__about">{selectedProduct.description}</p>
 		</div>
 		<div class="content__main__button">
 			<Button buttonIcon="bi bi-arrow-right" buttonTitle="Adicionar ao carrinho" on:buttonClick={() => addProductToCart(selectedProduct)} />

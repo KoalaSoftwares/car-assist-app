@@ -20,13 +20,13 @@
     <div class="content__cards__wrapper" on:keypress={() => {goToPage('admin/services')}} on:click={() => {goToPage('admin/services')}}>
       <p>Serviços</p>
     </div>
-    <div class="content__cards__wrapper" on:keypress={() => {goToPage('admin/products')}} on:click={() => {goToPage('admin/products')}}>
-      <p>Produtos</p>
-    </div>
     <div class="content__cards__wrapper" on:keypress={() => {goToPage('admin/schedules')}} on:click={() => {goToPage('admin/schedules')}}>
       <p>Agendamentos</p>
     </div>
-    <div class="content__cards__wrapper" on:keypress={() => {goToPage('admin/schedules')}} on:click={() => {goToPage('admin/schedules')}}>
+    <div class="content__cards__wrapper" on:keypress={() => {goToPage('admin/products')}} on:click={() => {goToPage('admin/products')}}>
+      <p>Produtos</p>
+    </div>
+    <div class="content__cards__wrapper" on:keypress={() => {goToPage('admin/schedules')}} on:click={() => {goToPage('admin/orders')}}>
       <p>Pedidos</p>
     </div>
   </main>
