@@ -63,7 +63,7 @@
       <h5 class="main__title">Para iniciar digite seu nome.</h5>
 
       <form class="form">
-        <Input required={true} labelName="Nome" placeholderText="Digite seu nome" inputName="Nome" />
+        <Input required={true} labelName="input" placeholderText="Digite seu nome" inputName="input" />
         <Button buttonTitle="Acessar aplicativo" buttonIcon="bi-arrow-right" />
       </form>
     </main>

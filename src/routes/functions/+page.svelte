@@ -34,7 +34,7 @@
 		/>
 	</main>
 
-	<footer class="content__footer">
+	<footer on:click={() => goToPage('admin')} on:keypress={() => goToPage('admin')} class="content__footer">
 		<FooterLogo />
 	</footer>
 </section>

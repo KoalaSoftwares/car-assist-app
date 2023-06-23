@@ -3,8 +3,16 @@
 	import { goto } from '$app/navigation';
 	import Button from '../../../components/Button.svelte';
 	import ProductCartCard from '../../../components/ProductCartCard.svelte';
+  import type { Product } from '../../../utility/Interfaces';
+	import { onMount } from 'svelte';
 
 	const pageTitle: string = 'Carrinho';
+  let userCart: Array<Product> = [];
+
+    onMount(() => {
+      userCart = JSON.parse(localStorage.getItem('USER_CART') || '[]');
+      console.log(userCart);
+    })
 
 	function goBack(): any {
 		history.back();
@@ -41,9 +49,9 @@
 	<main class="content__main">
     <div>
       <h4 class="content__main__title">Seus produtos</h4>
-      <ProductCartCard />
-      <ProductCartCard />
-      <ProductCartCard />
+      {#each userCart as product}
+      <ProductCartCard productImage={product.productImage} productName={product.productName} productPrice={product.productPrice} />
+      {/each}
     </div>
 
     <div>

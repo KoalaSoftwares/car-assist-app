@@ -5,7 +5,7 @@ const config: CapacitorConfig = {
   appName: 'Car Assist',
   webDir: 'dist',
   server: {
-    androidScheme: 'https'
+    androidScheme: 'http'
   },
 };
 

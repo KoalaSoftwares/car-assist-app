@@ -1,11 +1,12 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
 	import { onMount } from 'svelte';
-	import FooterLogo from '../../components/FooterLogo.svelte';
-	import Header from '../../components/Header.svelte';
-	import ServiceCard from '../../components/ServiceCard.svelte';
-	import Request from '../../utility/Request.js';
+	import FooterLogo from '../../../components/FooterLogo.svelte';
+	import Header from '../../../components/Header.svelte';
+	import ServiceCard from '../../../components/ServiceCard.svelte';
+	import Request from '../../../utility/Request.js';
 	import { json } from '@sveltejs/kit';
+	import Button from '../../../components/Button.svelte';
 
 	const pageTitle: string = 'Serviços';
 	const requestService = new Request();
@@ -34,8 +35,8 @@
 	}
 
 	function selectService(service: object) {
-    localStorage.setItem('USER_SCHEDULE', JSON.stringify(service));
-		goToPage('schedule');
+    localStorage.setItem('SELECTED_SERVICE', JSON.stringify(service));
+		goToPage('admin/services/modify-service');
 	}
 </script>
 
@@ -44,10 +45,7 @@
 		icon={'bi-arrow-left'}
 		on:iconClick={() => goBack()}
 		headerTitle={pageTitle}
-		extraButton={true}
-		buttonType="service"
-		buttonIcon="bi-calendar2-check-fill"
-		on:buttonClick={() => goToPage('services/user-schedules')}
+		extraButton={false}
 	/>
 
 	<main class="content__cards">
@@ -62,15 +60,15 @@
 				/>
 			{/each}
 		{/await}
-	</main>
 
-	<footer class="content__footer">
-		<FooterLogo />
-	</footer>
+    <div class="content__cards__button">
+      <Button buttonTitle="Criar serviço" buttonIcon="bi-arrow-right" on:buttonClick={() => goToPage('admin/services/create-service')} />
+    </div>
+	</main>
 </section>
 
 <style lang="scss">
-	@import '../../styles/global.scss';
+	@import '../../../styles/global.scss';
 
 	.content {
 		display: flex;
@@ -83,6 +81,10 @@
 			display: flex;
 			flex-direction: column;
 			padding: 1.2rem;
+
+      &__button {
+        padding-top: 2rem;
+      }
 		}
 
 		&__footer {

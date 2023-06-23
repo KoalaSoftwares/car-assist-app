@@ -1,18 +1,36 @@
 <script lang="ts">
-	import FooterLogo from "../../components/FooterLogo.svelte";
   import { goto } from "$app/navigation";
+  import Request from '../../utility/Request.js';
   import Header from "../../components/Header.svelte";
 	import ScheduleHourChip from "../../components/ScheduleHourChip.svelte";
 	import Input from "../../components/Input.svelte";
 	import Button from "../../components/Button.svelte";
 	import { onMount } from "svelte";
-
-
+  
+  
   let scheduleInfo = {};
-  let servicePrice: string;
-  let serviceName: string;
+  let serviceData: any;
   let clientName: string;
   let selectedHour: number;
+	const requestService = new Request();
+	const availableHours: Array<any> = [
+		{
+			id: 0,
+			hour: '10:00'
+		},
+		{
+			id: 1,
+			hour: '12:00'
+		},
+		{
+			id: 2,
+			hour: '13:30'
+		},
+		{
+			id: 3,
+			hour: '15:00'
+		}
+	];
 
   onMount(async () => {
     document.querySelector('form')?.addEventListener('submit', (e: any) => {
@@ -22,14 +40,32 @@
     })
 
     clientName = JSON.parse(localStorage.getItem('USER_NAME') || '');
+    serviceData = JSON.parse(localStorage.getItem('USER_SCHEDULE') || '')
   })
 
+  // async function fetchApiData() {
+  //   let endpoint = 'users';
+	// 	let fetchAvailableHour = await requestService.getRequest(endpoint);
+
+	// 	for (const hour in fetchAvailableHour) {
+	// 		if (Object.prototype.hasOwnProperty.call(fetchAvailableHour, hour)) {
+	// 			const element = fetchAvailableHour[hour];
+	// 			let fetchResult = {id: element.id, hour: element.name};
+	// 			availableHours.push(fetchResult);
+	// 		}
+	// 	}
+	// 	return availableHours;
+	// }
+
   function saveScheduleInfo(formData: FormData) {
+
+    let hourId = formData.get('selectedHour');
+    let hour = availableHours.find(hour => hour.id == hourId);
+
     scheduleInfo = {
-      id: formData.get('selectedHour'),
-      date: formData.get('selectedDate'),
-      price: servicePrice,
-      service: serviceName,
+      date: `${formData.get('selectedDate')} ${hour.hour}`,
+      price: serviceData.servicePrice,
+      serviceType: serviceData.serviceName,
       clientName: clientName,
       clientCar: `${formData.get('vehicleManufacturer')} ${formData.get('vehicleModel')}`,
       status: 'S'
@@ -59,7 +95,7 @@
       <input required class="content__main__date" name="selectedDate" type="date">
       <!-- <InlineCalendar start={today} end={tomorrow} theme={calendarTheme} /> -->
       <h4 class="content__main__title">Selecione a hora desejada</h4>
-      <ScheduleHourChip required bind:selectedHour inputName="selectedHour" />
+      <ScheduleHourChip availableHours={availableHours} required bind:selectedHour inputName="selectedHour" />
       <h4 class="content__main__title">Informações do Veículo</h4>
       <Input required labelName="Marca do Veículo" placeholderText="Digite a marca..." inputName="vehicleManufacturer" />
       <Input required labelName="Modelo do Veículo" placeholderText="Digite o modelo..." inputName="vehicleModel" />

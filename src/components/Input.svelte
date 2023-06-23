@@ -3,10 +3,11 @@
 	export let placeholderText: string;
 	export let required: boolean;
   export let inputName: string;
+  export let inputId: string = 'name'
 </script>
 
 <label class="label" for="name">{labelName}</label>
-<input class="input" {required} id="name" placeholder={placeholderText} type="text" name={inputName} />
+<input class="input" {required} id={inputId} placeholder={placeholderText} type="text" name={inputName} />
 
 <style lang="scss">
 	$base-gray: gray;
