@@ -52,7 +52,7 @@
   async function modifyService(serviceName: any, servicePrice: any) {
     let endpoint = `car-schedule-api/assistance/${serviceId}`;
     let headerContentType = 'application/json; charset=UTF-8';
-    let body = {serviceType: serviceName, price: servicePrice};
+    let body = {id: serviceId, serviceType: serviceName, price: servicePrice};
 
     await requestService.putRequest(endpoint, body, headerContentType)
     goBack();

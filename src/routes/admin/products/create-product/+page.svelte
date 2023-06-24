@@ -6,7 +6,7 @@
 	import Input from '../../../../components/Input.svelte';
 	import Button from '../../../../components/Button.svelte';
 
-	const pageTitle: string = 'Alterar agendamento';
+	const pageTitle: string = 'Criar produto';
 	const requestService = new Request();
 
 	onMount(async () => {

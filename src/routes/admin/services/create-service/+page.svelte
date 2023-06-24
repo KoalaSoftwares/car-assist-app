@@ -12,6 +12,7 @@
 	const requestService = new Request();
 	let serviceName: string;
 	let servicePrice: string;
+  let productId = Math.floor(Math.random() * 1000000) + 1;
 
 	onMount(async () => {
 		document.querySelector('form')?.addEventListener('submit', (e: any) => {
@@ -20,6 +21,7 @@
 
       createService(formData.get('service-name'), formData.get('service-price'));
 		});
+    console.log(productId)
 	});
 
 	function goBack(): any {
@@ -33,7 +35,7 @@
 	async function createService(serviceName: any, servicePrice: any) {
 		let endpoint = `car-schedule-api/assistance`;
 		let headerContentType = 'application/json; charset=UTF-8';
-		let body = { serviceType: serviceName, price: servicePrice };
+		let body = {serviceType: serviceName, price: servicePrice };
 
 		await requestService.postRequest(endpoint, body, headerContentType);
 		goBack();

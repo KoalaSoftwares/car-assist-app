@@ -5,6 +5,7 @@ export default class Request {
   public async getRequest(endpoint: string) {
     const fetchResult = await fetch(`${this.serverUrl}${endpoint}`);
     const fetchData = await fetchResult.json();
+    console.log(`Request url: ${this.serverUrl}${endpoint}`)
     return fetchData;
   }
 
@@ -12,6 +13,7 @@ export default class Request {
 
     const fetchResult = await fetch(`${this.serverUrl}${endpoint}`, { method: 'POST', body: JSON.stringify(body), headers: { 'content-type': headerContentType } })
     const fetchData = await fetchResult.json();
+    console.log(`Request url: ${this.serverUrl}${endpoint}`)
     return fetchData;
   }
 
@@ -19,6 +21,7 @@ export default class Request {
 
     const fetchResult = await fetch(`${this.serverUrl}${endpoint}`, { method: 'PUT', body: JSON.stringify(body), headers: { 'content-type': headerContentType } })
     const fetchData = await fetchResult.json();
+    console.log(`Request url: ${this.serverUrl}${endpoint}`)
     return fetchData;
   }
 
@@ -32,6 +35,7 @@ export default class Request {
 
     const fetchResult = await fetch(`${this.serverUrl}${endpoint}`, { method: 'DELETE', body: JSON.stringify(body) })
     const fetchData = await fetchResult.json();
+    console.log(`Request url: ${this.serverUrl}${endpoint}`)
     return true;
   }
 

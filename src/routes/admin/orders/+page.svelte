@@ -45,7 +45,7 @@
 	/>
 
 	<main class="content__cards">
-		<h3>Agendamentos realizados</h3>
+		<h3>Pedidos realizados</h3>
 		{#await fetchApiData() then services}
 			{#each services as service}
 				<ServiceCard
