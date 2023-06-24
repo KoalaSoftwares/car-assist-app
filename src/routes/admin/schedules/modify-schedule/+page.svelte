@@ -80,6 +80,7 @@
 		let endpoint = `car-schedule-api/schedule/${scheduleId}`;
 		let headerContentType = 'application/json; charset=UTF-8';
 		let body = {
+      id: scheduleId,
 			serviceType: serviceName,
 			price: servicePrice,
 			clientName: clientName,

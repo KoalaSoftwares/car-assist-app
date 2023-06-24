@@ -8,7 +8,7 @@
 	import { json } from '@sveltejs/kit';
 	import Button from '../../../components/Button.svelte';
 
-	const pageTitle: string = 'Serviços';
+	const pageTitle: string = 'Produtos';
 	const requestService = new Request();
 
 	function goBack(): any {
@@ -49,7 +49,7 @@
 	/>
 
 	<main class="content__cards">
-		<h3>Serviços disponíveis</h3>
+		<h3>Produtos disponíveis</h3>
 		{#await fetchApiData() then services}
 			{#each services as service}
 				<ServiceCard
